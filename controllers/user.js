@@ -16,7 +16,7 @@ const signup = async (req, res) => {
         return res.status(400).json({ error: 'Пользователь с таким email уже существует' });
     }
 
-    const hashedPassword = bcrypt.hash(password, 10);
+    const hashedPassword = await bcrypt.hash(password, 10);
     const user = new User({ email, password : hashedPassword, name });
     await user.save();
 
