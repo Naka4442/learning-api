@@ -43,7 +43,7 @@ const signin = async (req, res) => {
         return res.status(401).json({ error: 'Неверные данные' });
     }
 
-    const secret = process.env.SECRET;
+    const secret = process.env.SECRET_KEY;
     const token = jwt.sign({ userId: user._id }, secret, { expiresIn: '12h' });
 
     res.status(200).json({ token });
