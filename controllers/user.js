@@ -8,13 +8,14 @@ const all = async (req, res) => {
 
 const signup = async (req, res) => {
     if(!req.body) return res.status(400).json({ error: 'Нет данных' });
+    
+    const { email, password, name } = req.body;
 
     const existingUser = await User.findOne({ email });
     if(existingUser){
         return res.status(400).json({ error: 'Пользователь с таким email уже существует' });
     }
 
-    const { email, password, name } = req.body;
     const hashedPassword = bcrypt.hash(password, 10);
     const user = new User({ email, password : hashedPassword, name });
     await user.save();
