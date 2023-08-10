@@ -3,7 +3,7 @@ const { all, signup } = require("../controllers/user");
 
 const userRouter = Router();
 
-userRouter.use("/", all);
 userRouter.post("/signup", signup);
+userRouter.use("/", all);
 
 module.exports = userRouter;
