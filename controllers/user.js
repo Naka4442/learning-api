@@ -32,17 +32,17 @@ const signin = async (req, res) => {
     if(!req.body) return res.status(400).json({ error: 'Нет данных' });
 
     const { email, password } = req.body;
-
+    // Проверка на существование пользователя
     const user = await User.findOne({ email });
     if (!user) {
       return res.status(401).json({ error: 'Неверные данные' });
     }
-
+    // Проверка пароля
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
         return res.status(401).json({ error: 'Неверные данные' });
     }
-
+    // Создание токена
     const secret = process.env.SECRET_KEY;
     const token = jwt.sign({ userId: user._id }, secret, { expiresIn: '12h' });
 
