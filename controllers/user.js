@@ -49,5 +49,7 @@ const signin = async (req, res) => {
 }
 
 module.exports = {
-    all, signup
+    all,
+    signup,
+    signin
 }
