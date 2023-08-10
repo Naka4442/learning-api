@@ -1,9 +1,10 @@
+const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
 const auth = (req, res, next) => {
     const authHeader = req.headers['authorization'];
     const token = authHeader && authHeader.split(' ')[1];
-  
+    console.log(`Попытка авторизации. Заголовки: `, authHeader, token);
     if (!token) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
@@ -19,5 +20,5 @@ const auth = (req, res, next) => {
 }
 
 module.exports = {
-    auth
+    auth    
 }
