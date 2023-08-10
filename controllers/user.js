@@ -7,7 +7,7 @@ const all = async (req, res) => {
 }
 
 const signup = async (req, res) => {
-    if(!req.body) return response.sendStatus(400);
+    if(!req.body) return res.status(400).json({ error: 'Нет данных' });
 
     const existingUser = await User.findOne({ email });
     if(existingUser){
