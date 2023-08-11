@@ -1,0 +1,20 @@
+const Lesson = require('../models/lesson');
+
+const add = async (req, res) => {
+    const { index, title } = req.body;
+    if(!index || !title) return res.status(400).json({ error: 'Нет данных' });
+
+    const existingLesson = await Lesson.findOne({ index, title });
+    if(existingLesson){
+        return res.status(400).json({ error: 'Данный урок уже есть' });
+    }
+
+    const lesson = new Lesson({ index, title });
+    await lesson.save();
+
+    res.status(201).json({ message : 'Урок успешно создан' });
+}
+
+module.exports = {
+    add
+}
