@@ -15,6 +15,12 @@ const add = async (req, res) => {
     res.status(201).json({ message : 'Урок успешно создан' });
 }
 
+const all = async (req, res) => {
+    const lessons = await Lesson.find();
+    res.status(200).json({ lessons });
+}
+
 module.exports = {
-    add
+    add,
+    all
 }
