@@ -44,7 +44,7 @@ const signin = async (req, res) => {
     }
     // Создание токена
     const secret = process.env.SECRET_KEY;
-    const token = jwt.sign({ userId: user._id }, secret, { expiresIn: '12h' });
+    const token = jwt.sign({ id: user._id, name : user.name, email }, secret, { expiresIn: '12h' });
 
     res.status(200).json({ token });
 }
