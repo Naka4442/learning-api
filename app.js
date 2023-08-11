@@ -3,8 +3,10 @@ const mongoose = require("mongoose");
 
 const { signin, signup } = require("./controllers/user");
 const { auth } = require("./middlewares/auth");
+
 const userRouter = require("./routes/user");
-const lessonRouter = require("./routes/lesson"); 
+const lessonRouter = require("./routes/lesson");
+const courseRouter = require("./routes/course");
 
 const app = express();
 
@@ -17,6 +19,7 @@ app.use(auth);
 
 app.use("/users", userRouter);
 app.use("/lessons", lessonRouter);
+app.use("/courses", courseRouter);
 
 async function main() {
  
