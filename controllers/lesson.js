@@ -1,4 +1,5 @@
 const Lesson = require('../models/lesson');
+const Course = require('../models/course');
 
 const add = async (req, res) => {
     const { index, title } = req.body;
@@ -20,7 +21,15 @@ const all = async (req, res) => {
     res.status(200).json({ lessons });
 }
 
+const getByCourse = async (req, res) => {
+    const title = req.params.course.toLowerCase();
+    const course = await Course.find({ title });
+    const lessons = await Lesson.find({ course });
+    res.status(200).json({ lessons });
+}
+
 module.exports = {
     add,
-    all
+    all,
+    getByCourse
 }

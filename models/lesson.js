@@ -10,6 +10,10 @@ const Lesson = new Schema({
         type : String,
         required : true
     },
+    course : {
+        type : Schema.Types.ObjectId,
+        ref : 'Course'
+    },
     reactions : [{
         type : Schema.Types.ObjectId,
         ref : 'User'
