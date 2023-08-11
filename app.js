@@ -1,15 +1,20 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const { auth } = require("./middlewares/auth");
 
+const { signin, signup } = require("./controllers/user");
+const { auth } = require("./middlewares/auth");
 const userRouter = require("./routes/user"); 
 
 const app = express();
 
 app.use(express.json());
 
+app.post("/signup", signup);
+app.post("/signin", signin);
+
+app.use(auth);
+
 app.use("/users", userRouter);
-app.get("/", auth, (req, res) => res.end("I'm working!!!"))
 
 async function main() {
  
