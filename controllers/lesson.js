@@ -4,10 +4,10 @@ const Reaction = require('../models/reaction');
 
 const add = async (req, res) => {
     const { index, title, coursename } = req.body;
+    if(index === undefined || !title || !coursename) return res.status(400).json({ error: 'Нет данных' });
+
     const course = await Course.findOne({ title : coursename });
-    console.log(coursename);
-    console.log(`Попытка добавить урок в курс ${course.title}`);
-    if(index === undefined || !title) return res.status(400).json({ error: 'Нет данных' });
+    if(!course) return res.status(404).json({ error : 'Нет такого курса' });
 
     const existingLesson = await Lesson.findOne({ index, title, course });
     if(existingLesson){
