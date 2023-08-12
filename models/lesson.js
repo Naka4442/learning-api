@@ -16,7 +16,7 @@ const Lesson = new Schema({
     },
     reactions : [{
         type : Schema.Types.ObjectId,
-        ref : 'User'
+        ref : 'Reaction'
     }]
 })
 
