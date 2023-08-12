@@ -1,11 +1,12 @@
 const { Router } = require('express');
 const { isAdmin } = require('../middlewares/auth');
-const { add, all, getByCourse } = require("../controllers/lesson");
+const lesson = require("../controllers/lesson");
 
 const lessonRouter = Router();
 
-lessonRouter.get('/:course', getByCourse);
-lessonRouter.post('/', isAdmin, add);
-lessonRouter.get('/', all);
+lessonRouter.get('/:coursename', lesson.getByCourse);
+lessonRouter.get('/:coursename/:index', lesson.getByIndex);
+lessonRouter.post('/', isAdmin, lesson.add);
+lessonRouter.get('/', lesson.all);
 
 module.exports = lessonRouter;
