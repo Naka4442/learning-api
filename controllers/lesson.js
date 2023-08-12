@@ -4,7 +4,8 @@ const Reaction = require('../models/reaction');
 
 const add = async (req, res) => {
     const { index, title, coursename } = req.body;
-    const course = await Course.find({ title : coursename });
+    const course = await Course.findOne({ title : coursename });
+    console.log(coursename);
     console.log(`Попытка добавить урок в курс ${course.title}`);
     if(index === undefined || !title) return res.status(400).json({ error: 'Нет данных' });
 
