@@ -3,15 +3,16 @@ const Course = require('../models/course');
 const Reaction = require('../models/reaction');
 
 const add = async (req, res) => {
-    const { index, title } = req.body;
+    const { index, title, coursename } = req.body;
+    const course = await Course.find({ title : coursename });
     if(index === undefined || !title) return res.status(400).json({ error: 'Нет данных' });
 
-    const existingLesson = await Lesson.findOne({ index, title });
+    const existingLesson = await Lesson.findOne({ index, title, course });
     if(existingLesson){
         return res.status(400).json({ error: 'Данный урок уже есть' });
     }
 
-    const lesson = new Lesson({ index, title });
+    const lesson = new Lesson({ index, title, course });
     await lesson.save();
 
     return res.status(201).json({ message : 'Урок успешно создан' });
