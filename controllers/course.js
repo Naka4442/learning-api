@@ -1,6 +1,8 @@
 const Course = require('../models/course');
 
 const add = async (req, res) => {
+    if(!req.body) return res.status(400).json({ error: 'Нет данных' });
+    
     const { title } = req.body;
     
     const courseExists = await Course.findOne({ title });

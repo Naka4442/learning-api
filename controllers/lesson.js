@@ -3,6 +3,8 @@ const Course = require('../models/course');
 const Reaction = require('../models/reaction');
 
 const add = async (req, res) => {
+    if(!req.body) return res.status(400).json({ error: 'Нет данных' });
+    
     const { index, title, coursename } = req.body;
     if(index === undefined || !title || !coursename) return res.status(400).json({ error: 'Нет данных' });
 
