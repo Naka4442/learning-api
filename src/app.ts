@@ -1,3 +1,4 @@
+/// <reference path="globals.d.ts" />
 const express = require("express");
 const mongoose = require("mongoose");
 
