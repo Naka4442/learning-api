@@ -1,16 +1,17 @@
+import { Request, Response } from "express";
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
-const User = require('../models/user');
+import User from "../models/user";
 
-const all = async (req, res) => {
-    const users = await User.find();
+const all = async (req : Request, res : Response) => {
+    const users  = await User.find();
     res.json({ users });
 }
 
 
-const signup = async (req, res) => {
+const signup = async (req : Request, res : Response) => {
     if(!req.body) return res.status(400).json({ error: 'Нет данных' });
     
     const { email, password, name } = req.body;
@@ -28,7 +29,7 @@ const signup = async (req, res) => {
 }
 
 
-const signin = async (req, res) => {
+const signin = async (req : Request, res : Response) => {
     if(!req.body) return res.status(400).json({ error: 'Нет данных' });
 
     const { email, password } = req.body;
@@ -49,7 +50,7 @@ const signin = async (req, res) => {
     res.status(200).json({ token });
 }
 
-const me = (req, res) => res.status(200).json(req.user);
+const me = (req : Request, res : Response) => res.status(200).json(req.user);
 
 module.exports = {
     all,
