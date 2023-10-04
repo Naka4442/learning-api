@@ -1,4 +1,4 @@
-import { VerifyErrors, verify } from 'jsonwebtoken';
+import { verify } from 'jsonwebtoken';
 import { Request, Response, NextFunction } from 'express';
 import { config } from 'dotenv';
 config();

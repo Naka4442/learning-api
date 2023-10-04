@@ -1,8 +1,10 @@
-const Lesson = require('../models/lesson');
-const Course = require('../models/course');
-const Reaction = require('../models/reaction');
+import { Request, Response } from "express";
 
-const add = async (req, res) => {
+import Lesson  from "../models/lesson";
+import Reaction  from "../models/reaction";
+import Course  from "../models/course";
+
+export const add = async (req : Request, res : Response) => {
     if(!req.body) return res.status(400).json({ error: 'Нет данных' });
     
     const { index, title, coursename } = req.body;
@@ -22,12 +24,12 @@ const add = async (req, res) => {
     return res.status(201).json({ message : 'Урок успешно создан' });
 }
 
-const all = async (req, res) => {
+export const all = async (req : Request, res : Response) => {
     const lessons = await Lesson.find();
     return res.status(200).json({ lessons });
 }
 
-const getByCourse = async (req, res) => {
+export const getByCourse = async (req : Request, res : Response) => {
     const title = req.params.coursename.toLowerCase();
     const course = await Course.find({ title });
     if(!course) return res.status(404).json({ error : 'Нет такого курса' });
@@ -35,7 +37,7 @@ const getByCourse = async (req, res) => {
     res.status(200).json({ lessons });
 }
 
-const getByIndex = async (req, res) => {
+export const getByIndex = async (req : Request, res : Response) => {
     const { coursename, index } = req.params;
     const course = await Course.find({ title : coursename });
     if(!course) return res.status(404).json({ error : 'Нет такого курса' });
@@ -46,28 +48,21 @@ const getByIndex = async (req, res) => {
     return res.status(200).json(lesson);
 }
 
-const addReaction = async (req, res) => {
-    const user = req.user.id;
-    const { id, emoji } = req.body;
+// export const addReaction = async (req : Request, res : Response) => {
+//     if(!req.user) return res.status(403).json({ error : "Forbidden" });
+//     const user = req.user.id;
+//     const { id, emoji } = req.body;
     
-    const lesson = await Lesson.findById(id);
-    if(lesson){
-        if(!lesson.reactions.find( reaction => reaction.user === user )){
-            const reaction = new Reaction({ user, emoji });
-            await reaction.save();
-            lesson.reactions.push(reaction);
-            await lesson.save();
-            return res.status(201).json({ message : 'Реакция успешно добавлена' });
-        }
-        return res.status(409).json({ error : 'Реакция уже была добавлена' });
-    }
-    return res.status(404).json({ error : 'Нет урока' });  
-}
-
-module.exports = {
-    add,
-    all,
-    getByCourse,
-    addReaction,
-    getByIndex
-}
+//     const lesson = await Lesson.findById(id);
+//     if(lesson){
+//         if(!lesson.reactions.find( reaction => reaction.user === user )){
+//             const reaction = new Reaction({ user, emoji });
+//             await reaction.save();
+//             lesson.reactions.push(reaction);
+//             await lesson.save();
+//             return res.status(201).json({ message : 'Реакция успешно добавлена' });
+//         }
+//         return res.status(409).json({ error : 'Реакция уже была добавлена' });
+//     }
+//     return res.status(404).json({ error : 'Нет урока' });  
+// }

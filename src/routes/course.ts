@@ -7,4 +7,4 @@ const courseRouter = Router();
 courseRouter.post('/', isAdmin, add);
 courseRouter.get('/', all);
 
-module.exports = courseRouter;
+export default courseRouter;

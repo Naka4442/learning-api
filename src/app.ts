@@ -1,13 +1,13 @@
 /// <reference path="globals.d.ts" />
-const express = require("express");
-const mongoose = require("mongoose");
+import express from "express";
+import { connect, disconnect } from "mongoose";
 
-const { signin, signup } = require("./controllers/user");
-const { auth } = require("./middlewares/auth");
+import { signin, signup } from "./controllers/user";
+import { auth } from "./middlewares/auth";
 
-const userRouter = require("./routes/user");
-const lessonRouter = require("./routes/lesson");
-const courseRouter = require("./routes/course");
+import userRouter from "./routes/user";
+import lessonRouter from "./routes/lesson";
+import courseRouter from "./routes/course";
 
 const app = express();
 
@@ -25,7 +25,7 @@ app.use("/courses", courseRouter);
 async function main() {
  
     try{
-        await mongoose.connect("mongodb://127.0.0.1:27017/learning");
+        await connect("mongodb://127.0.0.1:27017/learning");
         app.listen(3000);
         console.log("Сервер ожидает подключения...");
     }
@@ -38,7 +38,7 @@ main();
 
 process.on("SIGINT", async() => {
       
-    await mongoose.disconnect();
+    await disconnect();
     console.log("Приложение завершило работу");
     process.exit();
 
