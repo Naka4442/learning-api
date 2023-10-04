@@ -1,6 +1,6 @@
 import mongoose, { Schema, Document } from "mongoose";
 
-interface ILesson extends Document {
+export interface ILesson extends Document {
     index : number,
     title : string,
     course : Schema.Types.ObjectId,

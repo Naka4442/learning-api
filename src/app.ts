@@ -1,5 +1,5 @@
 /// <reference path="globals.d.ts" />
-import express from "express";
+import express, { Express } from "express";
 import { connect, disconnect } from "mongoose";
 
 import { signin, signup } from "./controllers/user";
@@ -9,7 +9,7 @@ import userRouter from "./routes/user";
 import lessonRouter from "./routes/lesson";
 import courseRouter from "./routes/course";
 
-const app = express();
+const app : Express = express();
 
 app.use(express.json());
 

@@ -1,6 +1,6 @@
 import mongoose, { Schema, Document } from "mongoose";
 
-interface ICourse extends Document {
+export interface ICourse extends Document {
     title : string
 }
 

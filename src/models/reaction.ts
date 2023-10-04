@@ -1,6 +1,6 @@
 import mongoose, { Schema, Document } from "mongoose";
 
-interface IReaction extends Document {
+export interface IReaction extends Document {
     emoji : string,
     user : Schema.Types.ObjectId
 }
