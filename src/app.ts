@@ -6,6 +6,7 @@ import { signin, signup } from "./controllers/user";
 import { auth } from "./middlewares/auth";
 
 import tasksRouter from './routes/tasks'
+import workRouter from './routes/work'
 import userRouter from "./routes/user";
 import lessonRouter from "./routes/lesson";
 import courseRouter from "./routes/course";
@@ -19,6 +20,7 @@ app.post("/signin", signin);
 
 app.use(auth);
 
+app.use("/work", workRouter); 
 app.use("/users", userRouter);
 app.use("/tasks", tasksRouter);
 app.use("/lessons", lessonRouter);
