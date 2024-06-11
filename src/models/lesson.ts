@@ -7,7 +7,7 @@ export interface ILesson extends Document {
     reactions : Schema.Types.ObjectId[]
 }
 
-const LessonSchema = new Schema({
+const LessonSchema = new Schema<ILesson>({
     index : {
         type : Number,
         required : true

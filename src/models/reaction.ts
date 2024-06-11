@@ -4,7 +4,7 @@ export interface IReaction extends Document {
     emoji : string,
     user : Schema.Types.ObjectId
 }
-const ReactionSchema = new Schema({
+const ReactionSchema = new Schema<IReaction>({
     emoji : {
         type : String,
         required : true,

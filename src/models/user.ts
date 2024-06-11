@@ -7,7 +7,7 @@ export interface IUser extends Document {
     isAdmin : boolean
 }
 
-const UserSchema = new Schema({
+const UserSchema = new Schema<IUser>({
     email : {
         type : String,
         required : true
