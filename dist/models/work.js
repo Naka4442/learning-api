@@ -25,7 +25,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importStar(require("mongoose"));
 const WorkSchema = new mongoose_1.Schema({
-    name: {
+    title: {
         type: String,
         minLength: 5,
         maxLength: 100,
