@@ -3,12 +3,17 @@ import { Request, Response } from "express";
 import Work, {IWork} from "../models/work";
 
 export const add = async (req : Request, res : Response) => {
-    const { name, tasks } = req.body;
-    if (!name || !tasks) {
+    const { title, tasks } = req.body;
+    if (!title || !tasks) {
         return res.status(400).json({ error : 'missing required fields'});
     }
-    const work : IWork | null = new Work({ name, tasks });
+    const sameTask : IWork | null = await Work.findOne({ tasks });
+    if (sameTask){
+        return res.status(400).json({ error : 'task already exists'});
+    }
+    const work : IWork = new Work({ title, tasks });
     await work.save();
+
     return res.status(201).json(work);
 }
 

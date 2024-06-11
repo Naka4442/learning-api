@@ -15,11 +15,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.all = exports.one = exports.add = void 0;
 const work_1 = __importDefault(require("../models/work"));
 const add = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { name, tasks } = req.body;
-    if (!name || !tasks) {
+    const { title, tasks } = req.body;
+    if (!title || !tasks) {
         return res.status(400).json({ error: 'missing required fields' });
     }
-    const work = new work_1.default({ name, tasks });
+    const sameTask = yield work_1.default.findOne({ tasks });
+    if (sameTask) {
+        return res.status(400).json({ error: 'task already exists' });
+    }
+    const work = new work_1.default({ title, tasks });
     yield work.save();
     return res.status(201).json(work);
 });
