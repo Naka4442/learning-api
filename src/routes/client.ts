@@ -1,8 +1,9 @@
 import { Router } from "express";
-import { add } from "../controllers/client";
+import { add, all } from "../controllers/client";
 
-const courseRouter = Router();
+const clientRouter = Router();
 
-courseRouter.post('/', add);
+clientRouter.post('/', add);
+clientRouter.get('/', all);
 
-export default courseRouter;
+export default clientRouter;
