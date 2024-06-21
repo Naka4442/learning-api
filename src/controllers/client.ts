@@ -21,7 +21,7 @@ export const all = async (req : Request, res : Response) => {
 
 export const deleteClient = async (req : Request, res : Response) => {
     const id : string = req.params.id;
-    const work : IClient | null = await Client.findById(id);
+    const client : IClient | null = await Client.findByIdAndDelete(id);
 
-
+    return res.status(200).json(client);
 }

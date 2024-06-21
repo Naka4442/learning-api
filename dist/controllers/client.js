@@ -31,6 +31,7 @@ const all = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 exports.all = all;
 const deleteClient = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = req.params.id;
-    const work = yield client_1.default.findById(id);
+    const client = yield client_1.default.findByIdAndDelete(id);
+    return res.status(200).json(client);
 });
 exports.deleteClient = deleteClient;
