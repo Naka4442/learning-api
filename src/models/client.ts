@@ -54,6 +54,6 @@ const ClientSchema = new Schema<IClient>({
     }
 });
 
-const Client = mongoose.model<IClient>("Course", ClientSchema);
+const Client = mongoose.model<IClient>("Client", ClientSchema);
 
 export default Client;

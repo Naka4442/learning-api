@@ -63,5 +63,5 @@ const ClientSchema = new mongoose_1.Schema({
         type: String,
     }
 });
-const Client = mongoose_1.default.model("Course", ClientSchema);
+const Client = mongoose_1.default.model("Client", ClientSchema);
 exports.default = Client;
