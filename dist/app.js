@@ -18,6 +18,7 @@ const mongoose_1 = require("mongoose");
 const user_1 = require("./controllers/user");
 const auth_1 = require("./middlewares/auth");
 const tasks_1 = __importDefault(require("./routes/tasks"));
+const client_1 = __importDefault(require("./routes/client"));
 const work_1 = __importDefault(require("./routes/work"));
 const user_2 = __importDefault(require("./routes/user"));
 const lesson_1 = __importDefault(require("./routes/lesson"));
@@ -30,6 +31,7 @@ app.use(auth_1.auth);
 app.use("/work", work_1.default);
 app.use("/users", user_2.default);
 app.use("/tasks", tasks_1.default);
+app.use("/client", client_1.default);
 app.use("/lessons", lesson_1.default);
 app.use("/courses", course_1.default);
 function main() {
