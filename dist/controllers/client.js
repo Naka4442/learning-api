@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.all = exports.add = void 0;
+exports.deleteClient = exports.all = exports.add = void 0;
 const client_1 = __importDefault(require("../models/client"));
 const add = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { firstname, lastname, phone, from, email, datebirth, cost, description, discord, skype, telegram } = req.body;
@@ -29,3 +29,8 @@ const all = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     res.status(200).json(clients);
 });
 exports.all = all;
+const deleteClient = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const id = req.params.id;
+    const work = yield client_1.default.findById(id);
+});
+exports.deleteClient = deleteClient;

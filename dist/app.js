@@ -28,10 +28,10 @@ app.use(express_1.default.json());
 app.post("/signup", user_1.signup);
 app.post("/signin", user_1.signin);
 app.use(auth_1.auth);
-app.use("/work", work_1.default);
+app.use("/works", work_1.default);
 app.use("/users", user_2.default);
 app.use("/tasks", tasks_1.default);
-app.use("/client", client_1.default);
+app.use("/clients", client_1.default);
 app.use("/lessons", lesson_1.default);
 app.use("/courses", course_1.default);
 function main() {
