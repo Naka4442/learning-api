@@ -3,7 +3,7 @@ import express, { Express } from "express";
 import { connect, disconnect } from "mongoose";
 
 import { signin, signup } from "./controllers/user";
-import { auth } from "./middlewares/auth";
+import { auth, isAdmin } from "./middlewares/auth";
 
 import tasksRouter from './routes/tasks'
 import clientsRouter from './routes/client'
@@ -23,7 +23,7 @@ app.use(auth);
 
 app.use("/works", worksRouter); 
 app.use("/users", userRouter);
-app.use("/tasks", tasksRouter);
+app.use("/tasks", isAdmin, tasksRouter);
 app.use("/clients", clientsRouter)
 app.use("/lessons", lessonRouter);
 app.use("/courses", courseRouter);

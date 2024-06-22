@@ -30,7 +30,7 @@ app.post("/signin", user_1.signin);
 app.use(auth_1.auth);
 app.use("/works", work_1.default);
 app.use("/users", user_2.default);
-app.use("/tasks", tasks_1.default);
+app.use("/tasks", auth_1.isAdmin, tasks_1.default);
 app.use("/clients", client_1.default);
 app.use("/lessons", lesson_1.default);
 app.use("/courses", course_1.default);
