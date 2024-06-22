@@ -1,5 +1,6 @@
 /// <reference path="globals.d.ts" />
 import express, { Express } from "express";
+import cors from "cors";
 import { connect, disconnect } from "mongoose";
 
 import { signin, signup } from "./controllers/user";
@@ -15,6 +16,7 @@ import courseRouter from "./routes/course";
 const app : Express = express();
 
 app.use(express.json());
+app.use(cors());
 
 app.post("/signup", signup);
 app.post("/signin", signin);
