@@ -45,6 +45,7 @@ const signin = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { email, password } = req.body;
     // Проверка на существование пользователя
     const user = yield user_1.default.findOne({ email });
+    console.log(email, password, user);
     if (!user) {
         return res.status(401).json({ error: "Неверные данные" });
     }

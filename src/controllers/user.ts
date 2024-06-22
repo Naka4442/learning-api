@@ -37,6 +37,7 @@ export const signin = async (req : Request, res : Response) => {
     const { email, password } = req.body;
     // Проверка на существование пользователя
     const user : IUser | null = await User.findOne({ email });
+    console.log(email, password, user)
     if (!user) {
       return res.status(401).json({ error: "Неверные данные" });
     }
