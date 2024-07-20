@@ -21,6 +21,7 @@ export const all = async (req : Request, res : Response) => {
 
 export const remove = async (req : Request, res : Response) => {
     const id : string = req.params.id;
+    console.log("Удаление клиента с id", id);
     const client : IClient | null = await Client.findByIdAndDelete(id);
 
     return res.status(200).json(client);
