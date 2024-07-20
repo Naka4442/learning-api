@@ -1,12 +1,14 @@
 /// <reference path="globals.d.ts" />
 import express, { Express } from "express";
+import cors from "cors";
 import { connect, disconnect } from "mongoose";
 
 import { signin, signup } from "./controllers/user";
-import { auth } from "./middlewares/auth";
+import { auth, isAdmin } from "./middlewares/auth";
 
 import tasksRouter from './routes/tasks'
-import workRouter from './routes/work'
+import clientsRouter from './routes/client'
+import worksRouter from './routes/work'
 import userRouter from "./routes/user";
 import lessonRouter from "./routes/lesson";
 import courseRouter from "./routes/course";
@@ -14,15 +16,17 @@ import courseRouter from "./routes/course";
 const app : Express = express();
 
 app.use(express.json());
+app.use(cors());
 
 app.post("/signup", signup);
 app.post("/signin", signin);
 
 app.use(auth);
 
-app.use("/work", workRouter); 
+app.use("/works", worksRouter); 
 app.use("/users", userRouter);
-app.use("/tasks", tasksRouter);
+app.use("/tasks", isAdmin, tasksRouter);
+app.use("/clients", clientsRouter)
 app.use("/lessons", lessonRouter);
 app.use("/courses", courseRouter);
 
