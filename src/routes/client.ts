@@ -6,6 +6,6 @@ const clientRouter = Router();
 
 clientRouter.post('/',isAdmin, add);
 clientRouter.get('/',isAdmin, all);
-clientRouter.delete('/',isAdmin, remove);
+clientRouter.delete('/:id',isAdmin, remove);
 
 export default clientRouter;
