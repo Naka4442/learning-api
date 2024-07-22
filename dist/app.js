@@ -14,22 +14,26 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 /// <reference path="globals.d.ts" />
 const express_1 = __importDefault(require("express"));
+const cors_1 = __importDefault(require("cors"));
 const mongoose_1 = require("mongoose");
 const user_1 = require("./controllers/user");
 const auth_1 = require("./middlewares/auth");
 const tasks_1 = __importDefault(require("./routes/tasks"));
+const client_1 = __importDefault(require("./routes/client"));
 const work_1 = __importDefault(require("./routes/work"));
 const user_2 = __importDefault(require("./routes/user"));
 const lesson_1 = __importDefault(require("./routes/lesson"));
 const course_1 = __importDefault(require("./routes/course"));
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
+app.use((0, cors_1.default)());
 app.post("/signup", user_1.signup);
 app.post("/signin", user_1.signin);
 app.use(auth_1.auth);
-app.use("/work", work_1.default);
+app.use("/works", work_1.default);
 app.use("/users", user_2.default);
-app.use("/tasks", tasks_1.default);
+app.use("/tasks", auth_1.isAdmin, tasks_1.default);
+app.use("/clients", client_1.default);
 app.use("/lessons", lesson_1.default);
 app.use("/courses", course_1.default);
 function main() {
